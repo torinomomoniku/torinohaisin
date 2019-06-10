@@ -320,7 +320,9 @@ MonoBehaviour:
   Z: 0
   jumpchousei: 0
   kuchujumpbousi: 0
+  jumpflag: 0
   speed: 0.05
   speedz: 0.02
-  speedy: 0.3
-  gravity: -0.15
+  speedy: 0.15
+  jumpshosoku: 0.15
+  gravity: -0.015
