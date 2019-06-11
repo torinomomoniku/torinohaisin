@@ -79,6 +79,7 @@ public class PlayerController : MonoBehaviour
         {
             jumpflag = true;
             Y += jumpshosoku;
+            animator.SetTrigger("JumpTrigger");
 
         }
 
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour
         {
             Y += speedy;
             Y += speedy += gravity;
+            
         }
 
 

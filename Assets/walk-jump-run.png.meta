@@ -1,37 +1,37 @@
 fileFormatVersion: 2
-guid: 94711475b23a18448a0d54c9e327eb53
+guid: 5498ec920264d0d439a05263bffe4f0d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3858324146755154849
-    second: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_0"
+      213: -3223248067993015439
+    second: walk-jump-run_0
   - first:
-      213: -9061945223607739193
-    second: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_1"
+      213: -9087621123036015382
+    second: walk-jump-run_1
   - first:
-      213: -285109978561796124
-    second: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_2"
+      213: -1758374787752570281
+    second: walk-jump-run_2
   - first:
-      213: -7724533756644059354
-    second: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_3"
+      213: 713424892091626888
+    second: walk-jump-run_3
   - first:
-      213: -5396860966290880624
-    second: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_4"
+      213: 3115496249714502771
+    second: walk-jump-run_4
   - first:
-      213: 4036091310684247694
-    second: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_5"
+      213: -7583480256613354624
+    second: walk-jump-run_5
   - first:
-      213: -1817081060169498871
-    second: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_6"
+      213: -7959443040842856521
+    second: walk-jump-run_6
   - first:
-      213: 8055060029408244646
-    second: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_7"
+      213: 247408109354166252
+    second: walk-jump-run_7
   - first:
-      213: 898858487622207383
-    second: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_8"
+      213: -9165581011191401780
+    second: walk-jump-run_8
   - first:
-      213: 9040138502570423206
-    second: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_9"
+      213: 6205303041393142005
+    second: walk-jump-run_9
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -114,7 +114,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_0"
+      name: walk-jump-run_0
       rect:
         serializedVersion: 2
         x: 10
@@ -128,14 +128,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d1c6e214d49dded40abd974a0542143f
-      internalID: -3858324146755154849
+      spriteID: 6fa34d89c3a85014fa7fd1d2c911d1a9
+      internalID: -3223248067993015439
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_1"
+      name: walk-jump-run_1
       rect:
         serializedVersion: 2
         x: 10
@@ -149,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81047cd464eb27c4bae5e81991786832
-      internalID: -9061945223607739193
+      spriteID: 5ba757e2d2bc4c449ad63830a50f8333
+      internalID: -9087621123036015382
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_2"
+      name: walk-jump-run_2
       rect:
         serializedVersion: 2
         x: 10
@@ -170,14 +170,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f3787ed4125c3574db071b34f1be3a35
-      internalID: -285109978561796124
+      spriteID: 175a460e136622f4ba6706a2ef13d6f4
+      internalID: -1758374787752570281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_3"
+      name: walk-jump-run_3
       rect:
         serializedVersion: 2
         x: 10
@@ -191,14 +191,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8387ceabb209023449fec3b053b95d81
-      internalID: -7724533756644059354
+      spriteID: c066b17e2e0d31f49a84f2bdff1960a8
+      internalID: 713424892091626888
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_4"
+      name: walk-jump-run_4
       rect:
         serializedVersion: 2
         x: 9
@@ -212,14 +212,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b0d890606adc24447bc83997cafd97cd
-      internalID: -5396860966290880624
+      spriteID: 60acfec705a28c446920d34dc0af01ef
+      internalID: 3115496249714502771
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_5"
+      name: walk-jump-run_5
       rect:
         serializedVersion: 2
         x: 9
@@ -233,14 +233,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83314408736d9d84b80beab375c4ce6a
-      internalID: 4036091310684247694
+      spriteID: db8b161022749c043ac9b26b7d7ad6ae
+      internalID: -7583480256613354624
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_6"
+      name: walk-jump-run_6
       rect:
         serializedVersion: 2
         x: 9
@@ -254,14 +254,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 052e40268e2706a409ee57f402c90d7b
-      internalID: -1817081060169498871
+      spriteID: bd27752d18ffb304695e4908f921ced9
+      internalID: -7959443040842856521
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_7"
+      name: walk-jump-run_7
       rect:
         serializedVersion: 2
         x: 7
@@ -275,14 +275,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aded202ad47751a4d82b8727573a2067
-      internalID: 8055060029408244646
+      spriteID: 4b271f87698a7f4468a9ae8a5572692e
+      internalID: 247408109354166252
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_8"
+      name: walk-jump-run_8
       rect:
         serializedVersion: 2
         x: 9
@@ -296,14 +296,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40b6469616b7f664f8bc204c70c3a4cb
-      internalID: 898858487622207383
+      spriteID: 2854ff2b7afc2ae4ca8196ac8ddca0ca
+      internalID: -9165581011191401780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: "\u6B69\u304D\u8D70\u308A\u30B8\u30E3\u30F3\u30D7_9"
+      name: walk-jump-run_9
       rect:
         serializedVersion: 2
         x: 9
@@ -317,8 +317,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f17bb9dc5e213884f863720e553c1f9e
-      internalID: 9040138502570423206
+      spriteID: 5b78230a45092ac43afe1fb6ea6568b9
+      internalID: 6205303041393142005
       vertices: []
       indices: 
       edges: []
@@ -326,7 +326,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 02a9d254762a9a84195def747f7ce98e
+    spriteID: 4d50806a86ead7448b3ab2f5f6df2aaf
     internalID: 0
     vertices: []
     indices: 
