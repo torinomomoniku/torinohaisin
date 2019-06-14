@@ -8,9 +8,7 @@ public class PlayerController : MonoBehaviour
     public float Y;//ジャンプと奥行き移動用変数
 
     public float Z;
-    public float jumpchousei = 0;
-    public float kuchujumpbousi = 0;
-    public bool jumpflag = false;
+  
     public float speed = 0.05f;//横移動スピード
     public float speedz = 0.02f;//縦軸移動すぴーと
 
@@ -18,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public float jumpshosoku = 0.15f;
     public float gravity = -0.015f;//重力常にかけるよう
 
-    bool jumpstate = false;//ジャンプ状態用
+    public bool jumpstate = false;//ジャンプ状態用
 
 
     Animator animator;//アニメーションの使い方わからんので参考書のうつし
@@ -40,17 +38,19 @@ public class PlayerController : MonoBehaviour
         if (Y > 5) Y = 5;
 
 
-
+        
 
 
         Vector3 scale = transform.localScale;
+
+        //上下移動
         if (Input.GetAxisRaw("Horizontal") > 0)
 
         {
             scale.x = 5; // そのまま（右向き）
 
             pos.x += speed;//speedを座標にぶっこむ
-            animator.Play("Walk");//動いたときにアニメーション
+            
 
         }
         else if (Input.GetAxisRaw("Horizontal") < 0)
@@ -58,36 +58,46 @@ public class PlayerController : MonoBehaviour
             scale.x = -5; // 反転する（左向き）
 
             pos.x += -speed;//speedをマイナスして座標にぶっこむ
-            animator.Play("Walk");
-
+            
         }
-        transform.localScale = scale;
+
+                    
 
         if (Input.GetAxisRaw("Vertical") > 0)
         {
             Z += speedz;//speedzを座標にぶっこむ
-            animator.Play("Walk");//うごいたときにアニメーション
+           
 
         }
-        if (Input.GetAxisRaw("Vertical") < 0)
+        else if (Input.GetAxisRaw("Vertical") < 0)
         {
             Z += -speedz;//speedzマイナスして座標にぶっこむ
-            animator.Play("Walk");
+           
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && jumpchousei == 0 && kuchujumpbousi < 0.3)//スペースおしたらジャンプ   ジャンプ時間調整変数追加
+
+       
+
+        transform.localScale = scale;
+
+
+
+
+        //ジャンプ挙動
+
+        if (Input.GetKeyDown(KeyCode.Space))//スペースおしたらジャンプ   
         {
-            jumpflag = true;
+            jumpstate = true;
             Y += jumpshosoku;
-            animator.SetTrigger("JumpTrigger");
+            
 
         }
 
-        if (jumpflag == true)
+        if (jumpstate == true)
         {
             Y += speedy;
             Y += speedy += gravity;
-            
+           
         }
 
 
@@ -95,18 +105,43 @@ public class PlayerController : MonoBehaviour
         transform.position = pos;
         if (Y <= 0)//着地したらジャンプフラグをとめる＆speedyもとにもどす
         {
-            jumpflag = false;
+            jumpstate = false;
             speedy = 0.15f;
         }
 
-        if (Input.GetAxisRaw("Vertical") == 0 && Input.GetAxisRaw("Horizontal") == 0)//動いていないときはアニメーション停止
-        {
 
-            animator.Play("Stand");
+
+
+
+
+
+
+
+        //うまいさんのぱくってアニメーション用領域つくる
+        if (!jumpstate)
+        {
+            if (Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") < 0 || Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw("Vertical") < 0)
+            {
+                animator.Play("Walk");
+            }
+            else
+            {
+                animator.Play("Stand");
+
+            }
 
         }
 
+        else
+        {
+            if (jumpstate)
+            {
+                animator.Play("Jump");
+            }
+        }
+       
 
+       
 
     }
 }
