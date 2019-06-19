@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     public float gravity = -0.015f;//重力常にかけるよう
 
     public bool jumpstate = false;//ジャンプ状態用
-
+    public bool Squatstate = false;//屈みモーション
+    public float Squatkouchoku = 0;
 
     Animator animator;//アニメーションの使い方わからんので参考書のうつし
 
@@ -34,96 +35,115 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if (Y < 0) Y = 0;//Yの範囲制限
-        if (Y > 5) Y = 5;
-
+       
 
         
 
 
         Vector3 scale = transform.localScale;
 
-        //上下移動
-        if (Input.GetAxisRaw("Horizontal") > 0)
 
+        if (!Squatstate)//着地硬直は動けない
         {
-            scale.x = 5; // そのまま（右向き）
+            //上下移動
+            if (Input.GetAxisRaw("Horizontal") > 0)
 
-            pos.x += speed;//speedを座標にぶっこむ
-            
+            {
+                scale.x = 5; // そのまま（右向き）
 
-        }
-        else if (Input.GetAxisRaw("Horizontal") < 0)
-        {
-            scale.x = -5; // 反転する（左向き）
-
-            pos.x += -speed;//speedをマイナスして座標にぶっこむ
-            
-        }
-
-                    
-
-        if (Input.GetAxisRaw("Vertical") > 0)
-        {
-            Z += speedz;//speedzを座標にぶっこむ
-           
-
-        }
-        else if (Input.GetAxisRaw("Vertical") < 0)
-        {
-            Z += -speedz;//speedzマイナスして座標にぶっこむ
-           
-        }
+                pos.x += speed;//speedを座標にぶっこむ
 
 
-       
+            }
+            else if (Input.GetAxisRaw("Horizontal") < 0)
+            {
+                scale.x = -5; // 反転する（左向き）
 
-        transform.localScale = scale;
+                pos.x += -speed;//speedをマイナスして座標にぶっこむ
+
+            }
 
 
 
+            if (Input.GetAxisRaw("Vertical") > 0)
+            {
+                Z += speedz;//speedzを座標にぶっこむ
 
-        //ジャンプ挙動
 
-        if (Input.GetKeyDown(KeyCode.Space))//スペースおしたらジャンプ   
-        {
-            jumpstate = true;
-            Y += jumpshosoku;
-            
+            }
+            else if (Input.GetAxisRaw("Vertical") < 0)
+            {
+                Z += -speedz;//speedzマイナスして座標にぶっこむ
 
-        }
+            }
+
+
+
+
+            transform.localScale = scale;
+
+
+
+
+            //ジャンプ挙動
+
+            if (Input.GetKeyDown(KeyCode.Space))//スペースおしたらジャンプ   
+            {
+                jumpstate = true;
+                Y += jumpshosoku;
+
+
+            }
+
+        }//ここまで着地硬直でうごけない
+
 
         if (jumpstate == true)
         {
             Y += speedy;
             Y += speedy += gravity;
-           
+
+
+
+
+            
+            if (Y <= -0.1)//着地したらジャンプフラグをとめる＆speedyもとにもどす＆着地とたちモーションで絵柄にずれがでるから故意に着地はめりこませる
+            {
+                jumpstate = false;
+                speedy = 0.15f;
+                Squatstate = true;
+            }
         }
+
+        if(Squatstate)//着地硬直の屈伸モーション
+        {
+            Squatkouchoku += Time.deltaTime;
+
+            if (Squatkouchoku > 0.2f)
+            {
+                Squatstate = false;
+                Squatkouchoku = 0;
+                Y = 0;//硬直とけたらめりこんだ分をもとにもどす
+            }
+        }
+
 
 
         pos.y = Z + Y;
         transform.position = pos;
-        if (Y <= 0)//着地したらジャンプフラグをとめる＆speedyもとにもどす
-        {
-            jumpstate = false;
-            speedy = 0.15f;
-        }
-
-
-
-
-
-
 
 
 
         //うまいさんのぱくってアニメーション用領域つくる
-        if (!jumpstate)
+        if (!jumpstate&&!Squatstate)
         {
             if (Input.GetAxisRaw("Horizontal") > 0 || Input.GetAxisRaw("Horizontal") < 0 || Input.GetAxisRaw("Vertical") > 0 || Input.GetAxisRaw("Vertical") < 0)
             {
                 animator.Play("Walk");
             }
+
+            
+
             else
             {
                 animator.Play("Stand");
@@ -138,6 +158,13 @@ public class PlayerController : MonoBehaviour
             {
                 animator.Play("Jump");
             }
+
+            else if (Squatstate)
+            {
+                animator.Play("Squat");
+            }
+
+
         }
        
 
