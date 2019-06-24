@@ -12,13 +12,16 @@ public class PlayerController : MonoBehaviour
     public float speed = 0.05f;//横移動スピード
     public float speedz = 0.02f;//縦軸移動すぴーと
 
-    public float speedy = 0.15f;//ジャンプスピード変数
+    public float Speedy = 0.3f;//ジャンプ加速値
     public float jumpshosoku = 0.15f;
     public float gravity = -0.015f;//重力常にかけるよう
 
     public bool jumpstate = false;//ジャンプ状態用
-    public bool Squatstate = false;//屈みモーション
-    public float Squatkouchoku = 0;
+    public float Jumpkoudochousei = 0;//小ジャンプに使う変数
+    
+    public bool Squatstate = false;//屈伸モーション
+    public float Squatkouchoku = 0;//屈伸硬直のための変数
+    
 
     Animator animator;//アニメーションの使い方わからんので参考書のうつし
 
@@ -26,15 +29,13 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         this.animator = GetComponent<Animator>();//アニメーション系は参考書の写し
-
-
-
-
+        
+       
     }
     // Update is called once per frame
     void Update()
     {
-
+       
        
 
         
@@ -86,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
 
             //ジャンプ挙動
-
+                      
             if (Input.GetKeyDown(KeyCode.Space))//スペースおしたらジャンプ   
             {
                 jumpstate = true;
@@ -98,11 +99,15 @@ public class PlayerController : MonoBehaviour
         }//ここまで着地硬直でうごけない
 
 
-        if (jumpstate == true)
+        if (jumpstate == true)//ジャンプ状態　ジャンプ加速数値と重力を足す
         {
-            Y += speedy;
-            Y += speedy += gravity;
+            
+            Y += Speedy += gravity;
 
+            if (Speedy>0&&Input.GetKeyUp(KeyCode.Space))//ジャンプ上昇中にボタン話すとジャンプ加速値が０になる
+            {
+                Speedy = 0f;
+            }
 
 
 
@@ -110,8 +115,9 @@ public class PlayerController : MonoBehaviour
             if (Y <= -0.1)//着地したらジャンプフラグをとめる＆speedyもとにもどす＆着地とたちモーションで絵柄にずれがでるから故意に着地はめりこませる
             {
                 jumpstate = false;
-                speedy = 0.15f;
+                Speedy = 0.3f;
                 Squatstate = true;
+                Jumpkoudochousei = 0;
             }
         }
 
