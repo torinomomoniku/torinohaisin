@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     public float speed = 0.05f;//横移動スピード
     public float speedz = 0.02f;//縦軸移動すぴーと
 
-    public float Speedy = 0.3f;//ジャンプ加速値
+    public float Speedy = 0.6f;//ジャンプ加速値
     public float jumpshosoku = 0.15f;
-    public float gravity = -0.015f;//重力常にかけるよう
+    public float gravity = -0.04f;//重力常にかけるよう
 
     public bool jumpstate = false;//ジャンプ状態用
     public float Jumpkoudochousei = 0;//小ジャンプに使う変数
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
             if (Y <= -0.1)//着地したらジャンプフラグをとめる＆speedyもとにもどす＆着地とたちモーションで絵柄にずれがでるから故意に着地はめりこませる
             {
                 jumpstate = false;
-                Speedy = 0.3f;
+                Speedy = 0.6f;
                 Squatstate = true;
                 Jumpkoudochousei = 0;
             }

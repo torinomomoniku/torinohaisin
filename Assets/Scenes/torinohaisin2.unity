@@ -155,9 +155,9 @@ MonoBehaviour:
   Z: 0
   speed: 0.05
   speedz: 0.02
-  Speedy: 0.3
+  Speedy: 0.6
   jumpshosoku: 0.15
-  gravity: -0.015
+  gravity: -0.04
   jumpstate: 0
   Jumpkoudochousei: 0
   Squatstate: 0
