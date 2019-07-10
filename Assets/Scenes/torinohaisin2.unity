@@ -152,12 +152,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Y: 0
+  X: 0
   Z: 0
   speed: 0.05
   speedz: 0.02
-  Speedy: 0.6
+  Speedy: 0.3
   jumpshosoku: 0.15
-  gravity: -0.04
+  gravity: -0.02
   jumpstate: 0
   Jumpkoudochousei: 0
   Squatstate: 0
