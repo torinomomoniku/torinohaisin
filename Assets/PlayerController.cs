@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public float jumpshosoku = 0.15f;
     public float gravity = -0.02f;//重力常にかけるよう
 
-    public bool jumpstate = false;//ジャンプ状態用
+    public bool Jumpstate = false;//ジャンプ状態用
     public float Jumpkoudochousei = 0;//小ジャンプに使う変数
     
     public bool Squatstate = false;//屈伸モーション
@@ -28,6 +28,15 @@ public class PlayerController : MonoBehaviour
     public bool HidariDashstate = false;
     public float MigiDashjunbi = 0;//ダッシュ用変数
     public float HidariDashjunbi = 0;
+
+
+
+    public bool Kickstate = false;//キック用
+    public float Kickkouchoku = 0;
+
+
+    public float Kougekisuberi = 0.06f;//ダッシュ攻撃したときに多少滑らせるための変数
+
 
     Animator animator;//アニメーションの使い方わからんので参考書のうつし
 
@@ -50,7 +59,7 @@ public class PlayerController : MonoBehaviour
         Vector3 scale = transform.localScale;
 
 
-        if (!Squatstate)//着地硬直は動けない
+        if (!Squatstate&&!Kickstate)//着地＆キック硬直は動けない
         {
             //上下移動
             if (Input.GetAxisRaw("Horizontal") > 0&&!MigiDashstate)//ダッシュ中に通常歩きできないようにする
@@ -64,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
             }
          
-            else if (Input.GetAxisRaw("Horizontal") < 0)
+            else if (Input.GetAxisRaw("Horizontal") < 0&&!HidariDashstate)
             {
                
                 scale.x = -5; // 反転する（左向き）
@@ -101,12 +110,21 @@ public class PlayerController : MonoBehaviour
                       
             if (Input.GetKeyDown(KeyCode.Space))//スペースおしたらジャンプ   
             {
-                jumpstate = true;
+                Jumpstate = true;
                 Y += jumpshosoku;
 
 
             }
-                                      
+
+
+            //キック挙動　硬直解除時間用変数はアニメーションのifの中にぶっこんだ
+            if (!Jumpstate&&Input.GetKeyDown(KeyCode.Q))
+            {
+                Kickstate = true;
+              
+            }
+
+
                                  
         }//ここまで着地硬直でうごけない
 
@@ -134,6 +152,10 @@ public class PlayerController : MonoBehaviour
             if (MigiDashstate)//右ダッシュ状態
         {
             X += 0.1f;
+            if (Kickstate)//ダッシュ状態でキックしたときに多少すべるのを表現したい
+            {
+                X -= Kougekisuberi;
+            }
             if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 MigiDashjunbi = 0;
@@ -143,6 +165,10 @@ public class PlayerController : MonoBehaviour
         else if (HidariDashstate)//左ダッシュ状態
         {
             X -= 0.1f;
+            if (Kickstate)//ダッシュ状態でキックしたときに多少すべるのを表現したい
+            {
+                X += Kougekisuberi;
+            }
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 HidariDashjunbi = 0;
@@ -167,7 +193,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (jumpstate == true)//ジャンプ状態　ジャンプ加速数値と重力を足す
+        if (Jumpstate == true)//ジャンプ状態　ジャンプ加速数値と重力を足す
         {
             
             Y += Speedy += gravity;
@@ -182,7 +208,7 @@ public class PlayerController : MonoBehaviour
             
             if (Y <= -0.1)//着地したらジャンプフラグをとめる＆speedyもとにもどす＆着地とたちモーションで絵柄にずれがでるから故意に着地はめりこませる
             {
-                jumpstate = false;
+                Jumpstate = false;
                 Speedy = 0.3f;
                 Squatstate = true;
                 Jumpkoudochousei = 0;
@@ -193,18 +219,37 @@ public class PlayerController : MonoBehaviour
         {
             Squatkouchoku += Time.deltaTime;
 
+            MigiDashstate = false;//着地でダッシュ解除
+            MigiDashjunbi = 0;
+            HidariDashstate = false;
+            HidariDashjunbi = 0;
+
             if (Squatkouchoku > 0.2f)
             {
                 Squatstate = false;
                 Squatkouchoku = 0;
                 Y = 0;//硬直とけたらめりこんだ分をもとにもどす
 
-                MigiDashstate = false;//着地でダッシュ解除
-                MigiDashjunbi = 0;
-                HidariDashstate = false;
-                HidariDashjunbi = 0;
+                
             }
         }
+
+
+
+        if (Kickkouchoku >0.2)//キック硬直→解除用 ダッシュも解除＆ダッシュキックはちょっとすべらせたいのでここにいれた
+        {
+            Kickstate = false;
+            Kickkouchoku = 0;
+            MigiDashjunbi = 0;//ダッシュ解除
+            HidariDashjunbi = 0;
+            MigiDashstate = false;
+            HidariDashstate = false;
+        }
+
+
+
+
+
 
 
 
@@ -219,7 +264,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-
+       
 
 
 
@@ -227,9 +272,17 @@ public class PlayerController : MonoBehaviour
 
 
         //うまいさんのぱくってアニメーション用領域つくる
-        if (!jumpstate&&!Squatstate)
+        if (!Jumpstate&&!Squatstate)
         {
-            if (MigiDashstate||HidariDashstate)
+            if (Kickstate)　//キックモーションと硬直解除時間用の変数
+            {
+                animator.Play("Kick");
+                Kickkouchoku += Time.deltaTime;
+            }
+
+
+
+            else if (MigiDashstate||HidariDashstate)
             {
                 animator.Play("Dash");
             }
@@ -239,7 +292,10 @@ public class PlayerController : MonoBehaviour
                 animator.Play("Walk");
             }
 
-            
+           
+
+
+
 
             else
             {
@@ -251,7 +307,7 @@ public class PlayerController : MonoBehaviour
 
         else
         {
-            if (jumpstate)
+            if (Jumpstate)
             {
                 animator.Play("Jump");
             }
@@ -260,9 +316,12 @@ public class PlayerController : MonoBehaviour
             {
                 animator.Play("Squat");
             }
-
-
+                                  
+        
+           
         }
+
+     
        
 
        
