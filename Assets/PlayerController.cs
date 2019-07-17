@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     public bool Kickstate = false;//キック用
     public float Kickkouchoku = 0;
 
+    public bool Punchstate = false;//パンチ用
+    public float Punchkouchoku = 0;
 
     public float Kougekisuberi = 0.06f;//ダッシュ攻撃したときに多少滑らせるための変数
 
@@ -107,13 +109,10 @@ public class PlayerController : MonoBehaviour
 
 
             //ジャンプ挙動
-                      
-            if (Input.GetKeyDown(KeyCode.Space))//スペースおしたらジャンプ   
+            if (!Punchstate&&Input.GetKeyDown(KeyCode.Space))//スペースおしたらジャンプ   パンチをキックでキャンセルできるようにするため、最初の硬直にはパンチいれない
             {
                 Jumpstate = true;
                 Y += jumpshosoku;
-
-
             }
 
 
@@ -121,7 +120,12 @@ public class PlayerController : MonoBehaviour
             if (!Jumpstate&&Input.GetKeyDown(KeyCode.Q))
             {
                 Kickstate = true;
-              
+            }
+
+            //パンチ挙動
+            else if(!Jumpstate && Input.GetKeyDown(KeyCode.E))
+            {
+                Punchstate = true;
             }
 
 
@@ -152,7 +156,7 @@ public class PlayerController : MonoBehaviour
             if (MigiDashstate)//右ダッシュ状態
         {
             X += 0.1f;
-            if (Kickstate)//ダッシュ状態でキックしたときに多少すべるのを表現したい
+            if (Kickstate||Punchstate)//ダッシュ状態でキックしたときに多少すべるのを表現したい
             {
                 X -= Kougekisuberi;
             }
@@ -165,7 +169,7 @@ public class PlayerController : MonoBehaviour
         else if (HidariDashstate)//左ダッシュ状態
         {
             X -= 0.1f;
-            if (Kickstate)//ダッシュ状態でキックしたときに多少すべるのを表現したい
+            if (Kickstate||Punchstate)//ダッシュ状態でキックしたときに多少すべるのを表現したい
             {
                 X += Kougekisuberi;
             }
@@ -247,7 +251,15 @@ public class PlayerController : MonoBehaviour
         }
 
 
-
+        if (Punchkouchoku > 0.17)//パンチ硬直→解除用 キックのをパンチにしただけ
+        {
+            Punchstate = false;
+            Punchkouchoku = 0;
+            MigiDashjunbi = 0;//ダッシュ解除
+            HidariDashjunbi = 0;
+            MigiDashstate = false;
+            HidariDashstate = false;
+        }
 
 
 
@@ -274,7 +286,15 @@ public class PlayerController : MonoBehaviour
         //うまいさんのぱくってアニメーション用領域つくる
         if (!Jumpstate&&!Squatstate)
         {
-            if (Kickstate)　//キックモーションと硬直解除時間用の変数
+            if (Punchstate)
+            {
+                animator.Play("Punch");
+                Punchkouchoku += Time.deltaTime;
+            }
+
+
+
+            else if (Kickstate)　//キックモーションと硬直解除時間用の変数
             {
                 animator.Play("Kick");
                 Kickkouchoku += Time.deltaTime;
