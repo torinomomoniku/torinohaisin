@@ -156,9 +156,9 @@ MonoBehaviour:
   Z: 0
   speed: 0.05
   speedz: 0.02
-  Speedy: 0.3
+  Speedy: 0.09
   jumpshosoku: 0.15
-  gravity: -0.02
+  gravity: -0.003
   Jumpstate: 0
   Jumpkoudochousei: 0
   Squatstate: 0
@@ -169,7 +169,10 @@ MonoBehaviour:
   HidariDashjunbi: 0
   Kickstate: 0
   Kickkouchoku: 0
+  Punchstate: 0
+  Punchkouchoku: 0
   Kougekisuberi: 0.06
+  Jumpkick: 0
 --- !u!212 &83671774
 SpriteRenderer:
   m_ObjectHideFlags: 0

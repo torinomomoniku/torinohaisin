@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: 09e6051e82c768e4c8812eeed33cca79
+guid: 7aa4cc35a1772ec408b48f8017c55c0a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8560301711307429160
-    second: punch (1)_0
+      213: -4285710231094007364
+    second: jumpkick_0
   - first:
-      213: 2705861442319374958
-    second: punch (1)_1
+      213: 3858863148975674977
+    second: jumpkick_1
   - first:
-      213: 8898529293385094338
-    second: punch (1)_2
+      213: 989959203856879513
+    second: jumpkick_2
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -93,64 +93,64 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: punch (1)_0
+      name: jumpkick_0
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 97
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a2945ae903711040935dc6a6a722690
+      internalID: -4285710231094007364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jumpkick_1
       rect:
         serializedVersion: 2
         x: 8
-        y: 93
-        width: 21
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.5}
+        y: 59
+        width: 34
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f411a31fdce5024ba9c15e8e521c42d
-      internalID: 8560301711307429160
+      spriteID: d9b433d0dbcaccc478faec562a1fb39d
+      internalID: 3858863148975674977
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch (1)_1
+      name: jumpkick_2
       rect:
         serializedVersion: 2
-        x: 10
-        y: 53
-        width: 25
-        height: 32
-      alignment: 9
-      pivot: {x: 0.35, y: 0.5}
+        x: 6
+        y: 19
+        width: 37
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10b7a2b837f185a4bbad2b34a7616798
-      internalID: 2705861442319374958
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: punch (1)_2
-      rect:
-        serializedVersion: 2
-        x: 10
-        y: 13
-        width: 29
-        height: 32
-      alignment: 9
-      pivot: {x: 0.35, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bba6705fdd3b00f4f8fdecbb9507d048
-      internalID: 8898529293385094338
+      spriteID: 6a2cb8828e30a70469703a59470f3d5f
+      internalID: 989959203856879513
       vertices: []
       indices: 
       edges: []
@@ -158,7 +158,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 59fd28abc6dda274ba51b519133689d3
+    spriteID: e40e3086b5e0bce4c9c0d42309f053f8
     internalID: 0
     vertices: []
     indices: 

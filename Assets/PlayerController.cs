@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
 
     
 
-    public float Speedy = 0.3f;//ジャンプ加速値
+    public float Speedy = 0.09f;//ジャンプ加速値
     public float jumpshosoku = 0.15f;
-    public float gravity = -0.02f;//重力常にかけるよう
+    public float gravity = -0.003f;//重力常にかけるよう
 
     public bool Jumpstate = false;//ジャンプ状態用
     public float Jumpkoudochousei = 0;//小ジャンプに使う変数
@@ -29,8 +29,7 @@ public class PlayerController : MonoBehaviour
     public float MigiDashjunbi = 0;//ダッシュ用変数
     public float HidariDashjunbi = 0;
 
-
-
+         
     public bool Kickstate = false;//キック用
     public float Kickkouchoku = 0;
 
@@ -38,6 +37,12 @@ public class PlayerController : MonoBehaviour
     public float Punchkouchoku = 0;
 
     public float Kougekisuberi = 0.06f;//ダッシュ攻撃したときに多少滑らせるための変数
+
+
+
+    public bool Jumpkick = false;//ジャンプキック用
+
+
 
 
     Animator animator;//アニメーションの使い方わからんので参考書のうつし
@@ -199,7 +204,7 @@ public class PlayerController : MonoBehaviour
 
         if (Jumpstate == true)//ジャンプ状態　ジャンプ加速数値と重力を足す
         {
-            
+            Y += Speedy;
             Y += Speedy += gravity;
 
             if (Speedy>0&&Input.GetKeyUp(KeyCode.Space))//ジャンプ上昇中にボタン話すとジャンプ加速値が０になる
@@ -207,15 +212,21 @@ public class PlayerController : MonoBehaviour
                 Speedy = 0f;
             }
 
-
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Jumpkick = true;
+            }
+            
 
             
-            if (Y <= -0.1)//着地したらジャンプフラグをとめる＆speedyもとにもどす＆着地とたちモーションで絵柄にずれがでるから故意に着地はめりこませる
+           else if (Y <= -0.1)//着地したらジャンプフラグをとめる＆speedyもとにもどす＆着地とたちモーションで絵柄にずれがでるから故意に着地はめりこませる　ジャンプキックも解除
             {
                 Jumpstate = false;
-                Speedy = 0.3f;
+                Speedy = 0.09f;
                 Squatstate = true;
                 Jumpkoudochousei = 0;
+                Jumpkick = false;
+               
             }
         }
 
@@ -327,9 +338,16 @@ public class PlayerController : MonoBehaviour
 
         else
         {
-            if (Jumpstate)
+            if (Jumpkick)
+            {
+                animator.Play("Jumpkick");
+            }
+
+
+            else if (Jumpstate)
             {
                 animator.Play("Jump");
+                
             }
 
             else if (Squatstate)
