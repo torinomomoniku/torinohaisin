@@ -44,6 +44,10 @@ public class PlayerController : MonoBehaviour
 
 
 
+    public Rect sandbagHitBox;
+    public Rect HitBox;
+
+
 
     Animator animator;//アニメーションの使い方わからんので参考書のうつし
 
@@ -57,9 +61,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-       
 
+        HitBox = new Rect(10, 10, 1, 1);
+        sandbagHitBox = new Rect(X, Z, 5, 5);
         
 
 
@@ -286,6 +290,12 @@ public class PlayerController : MonoBehaviour
         transform.position = pos;
 
 
+
+        //あたり判定練習
+        if (HitBox.Overlaps(sandbagHitBox))
+        {
+            Debug.Log("いたい");
+        }
 
        
 
