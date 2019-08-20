@@ -48,7 +48,6 @@ public class PlayerController : MonoBehaviour
     public Rect HitBox;
 
 
-
     Animator animator;//アニメーションの使い方わからんので参考書のうつし
 
     // Start is called before the first frame update
@@ -62,7 +61,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        HitBox = new Rect(10, 10, 1, 1);
+       
         sandbagHitBox = new Rect(X, Z, 5, 5);
         
 
